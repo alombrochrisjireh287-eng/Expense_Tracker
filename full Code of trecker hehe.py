@@ -104,3 +104,30 @@ def view_expenses():
 
     except:
         messagebox.showerror("Error", "Cannot open file.")
+
+def create_main_window():
+    global window, text_area, entry_item, entry_amount, entry_quantity, category_var
+
+    # MAIN WINDOW
+    window = Tk()
+    window.title("Expense Tracker")
+    window.geometry("500x500")
+    window.configure(bg=BG_COLOR)
+
+    # TITLE
+    title_label = Label(window, text="Expense Tracker System", font=("Arial", 18), bg=BG_COLOR, fg=FG_COLOR)
+    title_label.pack(pady=10)
+
+    # ITEM
+    label_item = Label(window, text="Expense Item", bg=BG_COLOR, fg=FG_COLOR)
+    label_item.pack()
+
+    entry_item = Entry(window, width=30, bg=ENTRY_BG, fg=ENTRY_FG, insertbackground=FG_COLOR)
+    entry_item.pack(pady=5)
+
+    # AMOUNT
+    label_amount = Label(window, text="Amount of Expense", bg=BG_COLOR, fg=FG_COLOR)
+    label_amount.pack()
+
+    entry_amount = Entry(window, width=30, bg=ENTRY_BG, fg=ENTRY_FG, insertbackground=FG_COLOR)
+    entry_amount.pack(pady=5)
