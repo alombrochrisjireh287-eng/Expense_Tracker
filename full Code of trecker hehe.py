@@ -131,3 +131,30 @@ def create_main_window():
 
     entry_amount = Entry(window, width=30, bg=ENTRY_BG, fg=ENTRY_FG, insertbackground=FG_COLOR)
     entry_amount.pack(pady=5)
+
+ # QUANTITY
+    label_quantity = Label(window, text="Quantity", bg=BG_COLOR, fg=FG_COLOR)
+    label_quantity.pack()
+
+    entry_quantity = Entry(window, width=30, bg=ENTRY_BG, fg=ENTRY_FG, insertbackground=FG_COLOR)
+    entry_quantity.pack(pady=5)
+
+    # CATEGORY
+    label_category = Label(window, text="Category", bg=BG_COLOR, fg=FG_COLOR)
+    label_category.pack()
+
+    category_var = StringVar()
+    category_var.set("Food")
+
+    category_menu = OptionMenu(
+        window,
+        category_var,
+        "Food",
+        "Transportation",
+        "School",
+        "Bills",
+        "Others"
+    )
+    category_menu.config(bg=OPTION_BG, fg=OPTION_FG, activebackground=BUTTON_BG, activeforeground=BUTTON_FG, highlightthickness=0)
+    category_menu["menu"].config(bg=OPTION_BG, fg=OPTION_FG)
+    category_menu.pack(pady=5)
