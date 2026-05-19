@@ -57,3 +57,50 @@ def save_expense():
 
     except:
         messagebox.showerror("Error", "Something went wrong.")
+
+# Function to view expenses
+def view_expenses():
+    global text_area
+
+    try:
+        file = open("expenses.txt", "r")
+
+        records = file.readlines()
+
+        file.close()
+
+        text_area.delete(1.0, END)
+
+        if records:
+            # Header
+            header = "{:<20} {:<10} {:<10} {:<15} {:<12}\n".format("Expense Item", "Quantity", "Amount", "Category", "Total (PHP)")
+            text_area.insert(END, header)
+            text_area.insert(END, "-" * 67 + "\n")  # Separator line
+
+            total_sum = 0.0
+
+            # Data rows
+            for record in records:
+                parts = record.strip().split(" | ")
+                if len(parts) == 4:
+                    try:
+                        qty = float(parts[1])
+                        amt = float(parts[2])
+                        total = qty * amt
+                        total_sum += total
+                        row = "{:<20} {:<10} {:<10} {:<15} {:.2f}\n".format(parts[0], parts[1], parts[2], parts[3], total)
+                        text_area.insert(END, row)
+                    except ValueError:
+                        # Skip invalid lines
+                        continue
+
+            # Grand total
+            text_area.insert(END, "\nGrand Total: {:.2f} PHP".format(total_sum))
+        else:
+            text_area.insert(END, "No expenses recorded yet.")
+
+    except FileNotFoundError:
+        messagebox.showerror("Error", "Expense file not found.")
+
+    except:
+        messagebox.showerror("Error", "Cannot open file.")
