@@ -158,3 +158,32 @@ def create_main_window():
     category_menu.config(bg=OPTION_BG, fg=OPTION_FG, activebackground=BUTTON_BG, activeforeground=BUTTON_FG, highlightthickness=0)
     category_menu["menu"].config(bg=OPTION_BG, fg=OPTION_FG)
     category_menu.pack(pady=5)
+ # BUTTONS
+    save_button = Button(window, text="Save Expense", command=save_expense)
+    save_button.pack(pady=10)
+
+    view_button = Button(window, text="View Expenses", command=view_expenses)
+    view_button.pack(pady=5)
+
+
+    # TEXT AREA
+    frame = Frame(window)
+    frame.pack(pady=10)
+
+    # Horizontal scrollbar
+    h_scrollbar = Scrollbar(frame, orient=HORIZONTAL)
+    h_scrollbar.pack(side=BOTTOM, fill=X)
+
+    # Vertical scrollbar
+    v_scrollbar = Scrollbar(frame)
+    v_scrollbar.pack(side=RIGHT, fill=Y)
+
+    text_area = Text(frame, height=12, width=80, xscrollcommand=h_scrollbar.set, yscrollcommand=v_scrollbar.set, wrap=NONE)
+    text_area.pack(side=LEFT)
+
+    h_scrollbar.config(command=text_area.xview)
+    v_scrollbar.config(command=text_area.yview)
+
+
+    # RUN WINDOW
+    window.mainloop()
