@@ -187,3 +187,29 @@ def create_main_window():
 
     # RUN WINDOW
     window.mainloop()
+
+def login():
+    if entry_pass.get() == "admin123":
+        login_window.destroy()
+        create_main_window()
+    else:
+        messagebox.showerror("Error", "Incorrect password LOLOLOL")
+def show_login_window():
+    global login_window, entry_pass
+
+    login_window = Tk()
+    login_window.title("Login")
+    login_window.geometry("500x500")
+    login_window.configure(bg=BG_COLOR)
+    login_window.resizable(False, False)
+
+    label_pass = Label(login_window, text="Enter Password:", bg=BG_COLOR, fg=FG_COLOR)
+    label_pass.pack(pady=10)
+
+    entry_pass = Entry(login_window, show="*", bg=ENTRY_BG, fg=ENTRY_FG, insertbackground=FG_COLOR)
+    entry_pass.pack(pady=5)
+
+    button_login = Button(login_window, text="Login", command=login, bg=BUTTON_BG, fg=BUTTON_FG, activebackground=BG_COLOR, activeforeground=FG_COLOR)
+    button_login.pack(pady=10)
+
+    login_window.mainloop()
